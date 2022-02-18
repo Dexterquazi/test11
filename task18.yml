@@ -1,0 +1,12 @@
+--- # srk's task script
+- hosts: demo
+  user: user1
+  become: yes
+  connection: ssh
+  tasks:
+    - name: install docker
+      action: yum name=docker state=present
+      notify: start docker
+  handlers:
+    - name: start docker
+      action: service name=docker state=restarted
