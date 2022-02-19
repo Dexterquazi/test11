@@ -1,0 +1,12 @@
+--- # this is my yml script to install docker and start service in client without using of regular command
+- hosts: Demo
+  user: nadeem
+  become: yes
+  connection: ssh
+  tasks:
+    - name: install httpd in my linux client
+      action: yum name=httpd state=installed
+      notify: start httpd service
+  handlers:
+    - name: start httpd service
+      action: service name=httpd state=started
